@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>{{id ? '编辑':'新建'}}装备</h2>
-        <el-form @submit.native.prevent="save">
+        <el-form label-width="120px" @submit.native.prevent="save">
             <el-form-item label='名称'>
                 <el-input v-model="model.name"></el-input>
             </el-form-item>
