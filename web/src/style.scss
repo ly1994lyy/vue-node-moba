@@ -1,0 +1,127 @@
+//reset
+
+*{
+    box-sizing: border-box;
+    outline:none;
+}
+
+html{
+    font-size: 13px;
+}
+
+body{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.2em;
+    background: #f1f1f1;
+}
+
+a{
+    color: #999999;
+}
+
+$colors:(
+    "primary":#db9e3f,
+    "white":#fff,
+    "black":#000,
+    "dark":#222,
+    "grey":#999
+);
+
+@each $colorkey,$color in $colors {
+    .text-#{$colorkey}{
+        color: $color
+    }
+    .bg-#{$colorkey}{
+        background-color: $color
+    }
+}
+
+@each $var in (left,center,right) {
+    .text-#{$var}{
+        text-align: $var;
+    }
+}
+
+$base-font-size:1rem;
+
+$font-sizes:(xs:0.7692,sm:0.9231,md:1,lg:1.0769,xl:1.2308);
+
+@each $sizeKey,$size in $font-sizes {
+    .fs-#{$sizeKey}{
+        font-size:$size * $base-font-size
+    }
+}
+
+//flex
+.flex-column{
+    flex-direction: column;
+}
+
+.flex-1{
+    flex: 1;
+}
+
+.d-flex{
+    display: flex;
+}
+
+$flex-jc:(
+    start:flex-start,
+    end:flex-end,
+    center:center,
+    between:space-between,
+    around:space-around,
+);
+
+@each $key,$value in $flex-jc {
+    .jc-#{$key}{
+        justify-content: $value;
+    }
+};
+
+$flex-ai:(
+    start:flex-start,
+    end:flex-end,
+    center:center,
+    stretch:stretch,
+);
+
+@each $key,$value in $flex-ai {
+    .jc-#{$key}{
+        align-items: $value;
+    }
+};
+
+
+$spacing-types:(m:margin,p:padding);
+$spacing-directions:(t:top,l:left,b:bottom,r:right);
+$spacing-base-size:1rem;
+$spacing-sizes:(0:0,1:0.25,2:0.5,3:1,4:1.5,5:3);
+
+@each $typeKey,$type in $spacing-types {
+    @each $sizeKey,$size in $spacing-sizes {
+        .#{$typeKey}-#{$sizeKey}{
+            #{$type}:$size * $base-font-size
+        }
+    }
+    @each $sizeKey,$size in $spacing-sizes {
+        .#{$typeKey}x-#{$sizeKey}{
+            #{$type}-left:$size * $base-font-size;
+            #{$type}-right:$size * $base-font-size
+        }
+    }
+    @each $sizeKey,$size in $spacing-sizes {
+        .#{$typeKey}y-#{$sizeKey}{
+            #{$type}-top:$size * $base-font-size;
+            #{$type}-bottom:$size * $base-font-size
+        }
+    }
+    @each $directionKey,$direction in $spacing-directions {
+        @each $sizeKey,$size in $spacing-sizes {
+            .#{$typeKey}#{$directionKey}-#{$sizeKey}{
+                #{$type}-#{$direction}:$size * $base-font-size
+            }
+        }
+    }
+}
