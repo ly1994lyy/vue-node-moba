@@ -1,5 +1,5 @@
 //reset
-
+@import './variables';
 *{
     box-sizing: border-box;
     outline:none;
@@ -16,17 +16,19 @@ body{
     background: #f1f1f1;
 }
 
+.w-100{
+    width: 100%;
+}
+
+.h-100{
+    height: 100%;
+}
+
 a{
     color: #999999;
 }
 
-$colors:(
-    "primary":#db9e3f,
-    "white":#fff,
-    "black":#000,
-    "dark":#222,
-    "grey":#999
-);
+
 
 @each $colorkey,$color in $colors {
     .text-#{$colorkey}{
@@ -39,13 +41,9 @@ $colors:(
 
 @each $var in (left,center,right) {
     .text-#{$var}{
-        text-align: $var;
+        text-align: $var !important;
     }
 }
-
-$base-font-size:1rem;
-
-$font-sizes:(xs:0.7692,sm:0.9231,md:1,lg:1.0769,xl:1.2308);
 
 @each $sizeKey,$size in $font-sizes {
     .fs-#{$sizeKey}{
@@ -66,38 +64,17 @@ $font-sizes:(xs:0.7692,sm:0.9231,md:1,lg:1.0769,xl:1.2308);
     display: flex;
 }
 
-$flex-jc:(
-    start:flex-start,
-    end:flex-end,
-    center:center,
-    between:space-between,
-    around:space-around,
-);
-
 @each $key,$value in $flex-jc {
     .jc-#{$key}{
         justify-content: $value;
     }
 };
 
-$flex-ai:(
-    start:flex-start,
-    end:flex-end,
-    center:center,
-    stretch:stretch,
-);
-
 @each $key,$value in $flex-ai {
     .jc-#{$key}{
         align-items: $value;
     }
 };
-
-
-$spacing-types:(m:margin,p:padding);
-$spacing-directions:(t:top,l:left,b:bottom,r:right);
-$spacing-base-size:1rem;
-$spacing-sizes:(0:0,1:0.25,2:0.5,3:1,4:1.5,5:3);
 
 @each $typeKey,$type in $spacing-types {
     @each $sizeKey,$size in $spacing-sizes {
@@ -122,6 +99,23 @@ $spacing-sizes:(0:0,1:0.25,2:0.5,3:1,4:1.5,5:3);
             .#{$typeKey}#{$directionKey}-#{$sizeKey}{
                 #{$type}-#{$direction}:$size * $base-font-size
             }
+        }
+    }
+}
+
+.btn{
+    border: none;
+    border-radius: 0.1538rem;
+    font-size: map-get($font-sizes,'sm') * $base-font-size;
+    padding: 0.2rem 0.6rem;
+}
+
+.nav{
+    .nav-item{
+        border-bottom:3px solid transparent;
+        padding-bottom: 0.2rem;
+        &.active{
+            border-bottom: 3px solid #fff;
         }
     }
 }
