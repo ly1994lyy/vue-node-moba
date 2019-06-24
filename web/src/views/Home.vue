@@ -59,7 +59,17 @@
         <i class="sprite sprite-arrow mr-1"></i>
         <span>收起</span>  
       </div>   
-    </div>
+    </div> 
+    <m-list-card icon="caidan1" title="新闻资讯" :categories="newsCats">
+      <template #items="{category}">
+        <div class="py-2" v-for="(news,i) in category.newList" :key="i">
+          <span>[{{news.categoryName}}]</span>
+          <span>|</span>
+          <span>{{news.title}}</span>
+          <span>{{news.date}}</span>
+        </div>
+      </template>
+    </m-list-card>
   </div>
 </template>
 
@@ -74,6 +84,49 @@ export default {
             el: '.pagination-home'
           }
       },
+      newsCats:[
+        {
+          name:"热门",
+          newList:new Array(5).fill({}).map(v=>(
+            {
+              categoryName:'公告',
+              title:'部分安卓用户强制更新公告',
+              date:'06/16'
+            }
+          ))
+        },
+        {
+          name:"新闻",
+          newlist:new Array(5).fill({}).map(v=>(
+            {
+              categoryName:'新闻',
+              title:'部分安卓用户强制更新公告',
+              date:'06/16'
+            }
+          ))
+        },
+        {
+          name:"新闻",
+          newlist:new Array(5).fill({}).map(v=>(
+            {
+              categoryName:'新闻',
+              title:'部分安卓用户强制更新公告',
+              date:'06/16'
+            }
+          ))
+        },
+        {
+          name:"新闻",
+          newlist:new Array(5).fill({}).map(v=>(
+            {
+              categoryName:'新闻',
+              title:'部分安卓用户强制更新公告',
+              date:'06/16'
+            }
+          ))
+        },
+        
+      ]
     }
   },
 }
