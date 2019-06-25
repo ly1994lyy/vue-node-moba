@@ -62,20 +62,29 @@
     </div> 
     <m-list-card icon="caidan1" title="新闻资讯" :categories="newsCats">
       <template #items="{category}">
-        <div class="py-2" v-for="(news,i) in category.newList" :key="i">
-          <span>[{{news.categoryName}}]</span>
-          <span>|</span>
-          <span>{{news.title}}</span>
-          <span>{{news.date}}</span>
+        <div class="py-2 fs-lg d-flex" v-for="(news,i) in category.newsList" :key="i">
+          <span class="text-info">[{{news.categoryName}}]</span>
+          <span class="px-2">|</span>
+          <span class="flex-1 text-dark-1s text-ellipsis pr-2">{{news.title}}</span>
+          <span class="text-grey-1 fs-sm">{{news.createdAt | date}}</span>
         </div>
       </template>
     </m-list-card>
+    <m-list-card icon='card-hero' title="英雄列表">aaaa </m-list-card>
+    <m-list-card icon='card-hero' title="英雄列表">aaaa </m-list-card>
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   </div>
 </template>
 
 <script>
+import dayjs from 'dayjs'
 
 export default {
+  filters:{
+    date(val){
+      return dayjs(val).format('MM/DD')
+    }
+  },
   name: 'home',
   data(){
     return{
@@ -84,51 +93,18 @@ export default {
             el: '.pagination-home'
           }
       },
-      newsCats:[
-        {
-          name:"热门",
-          newList:new Array(5).fill({}).map(v=>(
-            {
-              categoryName:'公告',
-              title:'部分安卓用户强制更新公告',
-              date:'06/16'
-            }
-          ))
-        },
-        {
-          name:"新闻",
-          newlist:new Array(5).fill({}).map(v=>(
-            {
-              categoryName:'新闻',
-              title:'部分安卓用户强制更新公告',
-              date:'06/16'
-            }
-          ))
-        },
-        {
-          name:"新闻",
-          newlist:new Array(5).fill({}).map(v=>(
-            {
-              categoryName:'新闻',
-              title:'部分安卓用户强制更新公告',
-              date:'06/16'
-            }
-          ))
-        },
-        {
-          name:"新闻",
-          newlist:new Array(5).fill({}).map(v=>(
-            {
-              categoryName:'新闻',
-              title:'部分安卓用户强制更新公告',
-              date:'06/16'
-            }
-          ))
-        },
-        
-      ]
+      newsCats:[]
     }
   },
+  methods:{
+    async fetchNewsCats(){
+      const res = await this.$http.get('news/list')
+      this.newsCats = res.data
+    }
+  },
+  created(){
+    this.fetchNewsCats()
+  }
 }
 </script>
 

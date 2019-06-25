@@ -28,7 +28,12 @@ a{
     color: #999999;
 }
 
-
+.text-ellipsis {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 @each $colorkey,$color in $colors {
     .text-#{$colorkey}{
