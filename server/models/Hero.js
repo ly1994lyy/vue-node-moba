@@ -28,4 +28,4 @@ const scheme = new mongoose.Schema({
     }]
 })
 
-module.exports = mongoose.model('Hero', scheme)
+module.exports = mongoose.model('Hero', scheme,'heroes')
