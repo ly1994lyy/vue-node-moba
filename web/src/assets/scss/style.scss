@@ -28,6 +28,10 @@ a{
     color: #999999;
 }
 
+p{
+    line-height: 1.5em;
+}
+
 .text-ellipsis {
     display: inline-block;
     overflow: hidden;
@@ -84,6 +88,12 @@ a{
         align-items: $value;
     }
 };
+
+@each $dir in (top,bottom,left,right) {
+    .border-#{$dir}{
+        border-#{$dir}:1px solid map-get($colors, $border-color )
+    }
+}
 
 @each $typeKey,$type in $spacing-types {
     @each $sizeKey,$size in $spacing-sizes {
