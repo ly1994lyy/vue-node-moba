@@ -84,7 +84,7 @@ p{
 };
 
 @each $key,$value in $flex-ai {
-    .jc-#{$key}{
+    .ai-#{$key}{
         align-items: $value;
     }
 };

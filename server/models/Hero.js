@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const scheme = new mongoose.Schema({
     name:{ type:String },
     avatar:{ type:String },
+    banner:{ type:String },
     title:{ type:String },
     categories:[{ type:mongoose.SchemaTypes.ObjectId, ref:'Category' }],
     scores:{
@@ -13,6 +14,8 @@ const scheme = new mongoose.Schema({
     },
     skills:[{
         icon:{type:String},
+        delay:{type:String},
+        cost:{type:String},
         name:{type:String},
         description:{type:String},
         tips:{type:String},
@@ -23,7 +26,7 @@ const scheme = new mongoose.Schema({
     battleTips:{type:String},
     teamTips:{type:String},
     partners:[{
-        type:mongoose.SchemaTypes.ObjectId, ref:'Item',
+        hero:{type:mongoose.SchemaTypes.ObjectId, ref:'Hero'},
         description:{type:String}
     }]
 })
