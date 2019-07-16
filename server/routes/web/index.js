@@ -114,7 +114,7 @@ module.exports = app => {
 
     //英雄详情接口
     router.get('/heroes/:id',async(req,res)=>{
-        const data = await Hero.findById(req.params.id).populate('categories').lean()
+        const data = await Hero.findById(req.params.id).populate('categories item1 item2 partners.hero').lean()
         res.send(data)
     })
 

@@ -52,20 +52,67 @@
                             </router-link>
                             <router-link tag="button" to="/" class="btn btn-lg flex-1 ml-2">
                                 <i class="iconfont icon-gonglve"></i>
-                                英雄介绍视频
+                                一图识英雄
                             </router-link>
+                        </div>
+                        <div class="skills bg-white mt-4">
+                            <div class="d-flex jc-around">
+                                <img :src="item.icon" 
+                                v-for="(item,i) in model.skills"
+                                @click="currentSkillIndex=i"
+                                class="icon"
+                                :class="{active:currentSkillIndex===i}"
+                                :key="item.name"
+                                >
+                            </div>
+                            <div v-if="currentSkill">
+                                <div class="d-flex pt-4 pb-3">
+                                    <h3 class="m-0">{{currentSkill.name}}</h3>
+                                    <span class="text-grey-1 ml-4">(冷却值:{{currentSkill.delay}}消耗:{{currentSkill.cost}})</span>
+                                </div>
+                                <p>{{currentSkill.description}}</p>
+                                <div class="border-bottom"></div>
+                                <p class="text-grey-1">小提示:{{currentSkill.tips}}</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="skills">
-                        <div class="d-flex jc-around">
-                            <img :src="item.icon" 
-                            v-for="item in model.skills" 
-                            :key="item.name"
-                            width="70"
-                            height="70">
+                    <m-card plain icon="gonglve" title="出装顺序" class="hero-items">
+                        <div class="fs-xl mt-3">顺风出装</div>
+                        <div class="d-flex jc-around text-center mt-3">
+                            <div v-for="item in model.item1" :key="item.name">
+                                <img :src="item.icon" class="icon">
+                                <div class="fs-45">{{item.name}}</div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="border-bottom mt-3"></div>
+                        <div class="fs-xl mt-3">逆风出装</div>
+                        <div class="d-flex jc-around text-center mt-3">
+                            <div v-for="item in model.item2" :key="item.name">
+                                <img :src="item.icon" class="icon">
+                                <div class="fs-45">{{item.name}}</div>
+                            </div>
+                        </div>
+                    </m-card>
+                    <m-card plain icon="gonglve" title="使用技巧">
+                        <p>{{model.usageTips}}</p>
+                    </m-card>
+                    <m-card plain icon="gonglve" title="对抗技巧">
+                        <p>{{model.battleTips}}</p>
+                    </m-card>
+                    <m-card plain icon="gonglve" title="团战思路">
+                        <p>{{model.teamTips}}</p>
+                    </m-card>
+                    <m-card plain icon="gonglve" title="英雄关系">
+                        <div class="fs-xl mt-3">最佳搭档</div>
+                        <div v-for="item in model.partners" :key="item.name" class="d-flex pt-3">
+                            <img :src="item.hero.avatar" alt="" width="50">
+                            <p class="flex-1 m-0 ml-3">
+                                {{item.description}}
+                            </p>
+                        </div>
+                        <div class="border-bottom mt-3"></div>
+                    </m-card>
                 </div>
             </swiper-slide>
             <swiper-slide></swiper-slide>
@@ -81,7 +128,13 @@ export default {
   },
   data() {
       return {
-          model: null
+          model: null,
+          currentSkillIndex:0
+      }
+  },
+  computed: {
+      currentSkill() {
+          return this.model.skills[this.currentSkillIndex] 
       }
   },
   methods: {
@@ -97,6 +150,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/_variables.scss';
+
 .page-hero{
     .top{
         height: 50vw;
@@ -117,6 +172,24 @@ export default {
                 font-size: 0.6rem;
                 border: 1px solid rgba(255,255,255,0.2);
             }
+        }
+    }
+    .skills{
+        img.icon{
+            border: 3px solid map-get($colors, 'white');
+            &.active{
+                border-color:map-get($colors, 'primary');
+            }
+            border-radius: 50%;
+            width:70px;
+            height:70px;
+        }
+    }
+    .hero-items{
+        img.icon{
+            width: 45px;
+            height:45px;
+            border-radius: 50%;
         }
     }
 }
