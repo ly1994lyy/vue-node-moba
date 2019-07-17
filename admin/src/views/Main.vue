@@ -15,6 +15,11 @@
           <el-menu-item index="/heroes/list">英雄列表</el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group>
+          <template slot="title">铭文管理</template>
+          <el-menu-item index="/runes/create">新建铭文</el-menu-item>
+          <el-menu-item index="/runes/list">铭文列表</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group>
           <template slot="title">文章管理</template>
           <el-menu-item index="/articles/create">新建文章</el-menu-item>
           <el-menu-item index="/articles/list">文章列表</el-menu-item>

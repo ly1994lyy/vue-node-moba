@@ -13,6 +13,8 @@ import AdEdit from './views/AdEdit.vue'
 import AdList from './views/AdList.vue'
 import AdminUserEdit from './views/AdminUserEdit.vue'
 import AdminUserList from './views/AdminUserList.vue'
+import RuneList from './views/RuneList.vue'
+import RuneEdit from './views/RuneEdit.vue'
 import Login from './views/Login.vue'
 
 
@@ -46,6 +48,9 @@ const router =  new Router({
         {path: '/ads/create',component: AdEdit},
         {path: '/ads/edit/:id',component: AdEdit,props:true},
         {path: '/ads/list',component: AdList},
+        {path: '/runes/create',component: RuneEdit},
+        {path: '/runes/edit/:id',component: RuneEdit,props:true},
+        {path: '/runes/list',component: RuneList},
         {path: '/admin_users/create',component: AdminUserEdit},
         {path: '/admin_users/edit/:id',component: AdminUserEdit,props:true},
         {path: '/admin_users/list',component: AdminUserList}
