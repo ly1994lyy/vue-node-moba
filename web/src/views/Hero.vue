@@ -76,8 +76,30 @@
                             </div>
                         </div>
                     </div>
-
-                    <m-card plain icon="gonglve" title="出装顺序" class="hero-items">
+                    <m-card plain icon="gonglve" title="加点建议" class="hero-items no-border">
+                        <div class="d-flex jc-around">
+                            <div class="text-center">
+                                <p>主升</p>
+                                <img :src="model.mainSkill.icon" width="60">
+                                <p class="fs-xs">{{model.mainSkill.name}}</p>
+                            </div>
+                            <div class="text-center">
+                                <p>副升</p>
+                                <img :src="model.secSkill.icon" width="60">
+                                <p class="fs-xs">{{model.secSkill.name}}</p>
+                            </div>
+                            <div class="text-center">
+                                <p>召唤师技能</p>
+                                <div class="d-flex">
+                                    <div v-for="item of model.skillTips" :key="item.name">
+                                        <img class="skill-img ml-2" :src="item.icon" width="60">
+                                        <p class="fs-xs">{{item.name}}</p>
+                                    </div>
+                                </div>     
+                            </div>
+                        </div>
+                    </m-card>
+                    <m-card plain icon="gonglve" title="出装顺序" class="hero-items spc-item">
                         <div class="fs-xl mt-3">顺风出装</div>
                         <div class="d-flex jc-around text-center mt-3">
                             <div v-for="item in model.item1" :key="item.name">
@@ -91,6 +113,17 @@
                             <div v-for="item in model.item2" :key="item.name">
                                 <img :src="item.icon" class="icon">
                                 <div class="fs-45">{{item.name}}</div>
+                            </div>
+                        </div>
+                    </m-card>
+                    <m-card plain icon="gonglve" title="铭文推荐" class="hero-items">
+                        <div class="d-flex jc-around mt-3">
+                            <div class="d-flex" v-for="item in model.runeTips" :key="item.name">
+                                <img :src="item.icon" width="40">
+                                <div class="ml-2">
+                                    <p class="m-0 p-0 fs-lg">{{item.name}}</p>
+                                    <p class="m-0 p-0 fs-xss" v-for="demo in item.property" :key="demo.id">{{demo.body}}</p>
+                                </div>
                             </div>
                         </div>
                     </m-card>
@@ -112,6 +145,21 @@
                             </p>
                         </div>
                         <div class="border-bottom mt-3"></div>
+                        <div class="fs-xl mt-3">被谁克制</div>
+                        <div v-for="item in model.fearHeros" :key="item.name" class="d-flex pt-3">
+                            <img :src="item.hero.avatar" alt="" width="50">
+                            <p class="flex-1 m-0 ml-3">
+                                {{item.description}}
+                            </p>
+                        </div>
+                        <div class="border-bottom mt-3"></div>
+                        <div class="fs-xl mt-3">克制谁</div>
+                        <div v-for="item in model.attackHeros" :key="item.name" class="d-flex pt-3">
+                            <img :src="item.hero.avatar" alt="" width="50">
+                            <p class="flex-1 m-0 ml-3">
+                                {{item.description}}
+                            </p>
+                        </div>
                     </m-card>
                 </div>
             </swiper-slide>
@@ -191,6 +239,15 @@ export default {
             height:45px;
             border-radius: 50%;
         }
+    }
+    .spc-item{
+        margin-top: 0;
+    }
+    .no-border{
+        border-bottom: none;
+    }
+    .skill-img{
+        border-radius: 50%;
     }
 }
 </style>

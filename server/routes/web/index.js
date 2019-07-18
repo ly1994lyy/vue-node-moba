@@ -114,7 +114,20 @@ module.exports = app => {
 
     //英雄详情接口
     router.get('/heroes/:id',async(req,res)=>{
-        const data = await Hero.findById(req.params.id).populate('categories item1 item2 partners.hero').lean()
+        const data = await Hero.findById(req.params.id).populate('categories item1 item2 partners.hero skillTips runeTips fearHeros.hero attackHeros.hero').lean()
+        const skillId = data.mainSkill
+        const secSkillId = data.secSkill
+        for(let item of data.skills){
+            if(item._id==skillId){
+                data.mainSkill = item
+            }
+        }
+        for(let item of data.skills){
+            if(item._id==secSkillId){
+                data.secSkill = item
+            }
+        }
+        
         res.send(data)
     })
 

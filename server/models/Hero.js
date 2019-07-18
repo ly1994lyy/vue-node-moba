@@ -8,8 +8,8 @@ const scheme = new mongoose.Schema({
     categories:[{ type:mongoose.SchemaTypes.ObjectId, ref:'Category' }],
     runeTips:[{type:mongoose.SchemaTypes.ObjectId,ref:'Rune'}],
     skillTips:[{type:mongoose.SchemaTypes.ObjectId,ref:'Skill'}],
-    mainSkill:{type:String},
-    secSkill:{type:String},
+    mainSkill:{type:Object},
+    secSkill:{type:Object},
     scores:{
         difficult:{type:Number},
         skills:{type:Number},
@@ -30,6 +30,14 @@ const scheme = new mongoose.Schema({
     battleTips:{type:String},
     teamTips:{type:String},
     partners:[{
+        hero:{type:mongoose.SchemaTypes.ObjectId, ref:'Hero'},
+        description:{type:String}
+    }],
+    fearHeros:[{
+        hero:{type:mongoose.SchemaTypes.ObjectId, ref:'Hero'},
+        description:{type:String}
+    }],
+    attackHeros:[{
         hero:{type:mongoose.SchemaTypes.ObjectId, ref:'Hero'},
         description:{type:String}
     }]

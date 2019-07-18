@@ -63,17 +63,32 @@
           </el-form-item>
           <el-form-item label="召唤师技能">
             <el-select v-model="model.skillTips" multiple>
-              <el-option v-for="item of skills" :key="item._id" :label="item.name" :value="item._id"></el-option>
+              <el-option
+                v-for="item of skills"
+                :key="item._id"
+                :label="item.name"
+                :value="item._id"
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="主升技能">
             <el-select v-model="model.mainSkill">
-              <el-option v-for="item of model.skills" :key="item._id" :label="item.name" :value="item._id"></el-option>
+              <el-option
+                v-for="item of model.skills"
+                :key="item._id"
+                :label="item.name"
+                :value="item._id"
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="副升技能">
             <el-select v-model="model.secSkill">
-              <el-option v-for="item of model.skills" :key="item._id" :label="item.name" :value="item._id"></el-option>
+              <el-option
+                v-for="item of model.skills"
+                :key="item._id"
+                :label="item.name"
+                :value="item._id"
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="顺风出装">
@@ -143,10 +158,12 @@
             <el-col :md="12" v-for="(item,i) in model.partners" :key="i">
               <el-form-item label="英雄">
                 <el-select filterable v-model="item.hero">
-                    <el-option v-for="hero in heroes" 
+                  <el-option
+                    v-for="hero in heroes"
                     :key="hero._id"
                     :value="hero._id"
-                    :label="hero.name"></el-option>
+                    :label="hero.name"
+                  ></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="描述">
@@ -154,6 +171,56 @@
               </el-form-item>
               <el-form-item>
                 <el-button size="small" type="danger" @click="model.partners.splice(i,1)">删除</el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-tab-pane>
+        <el-tab-pane label="被谁克制">
+          <el-button @click="model.fearHeros.push({})">
+            <i class="el-icon-plus"></i>添加英雄
+          </el-button>
+          <el-row type="flex" style="flex-wrap:wrap">
+            <el-col :md="12" v-for="(item,i) in model.fearHeros" :key="i">
+              <el-form-item label="英雄">
+                <el-select filterable v-model="item.hero">
+                  <el-option
+                    v-for="hero in heroes"
+                    :key="hero._id"
+                    :value="hero._id"
+                    :label="hero.name"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="描述">
+                <el-input v-model="item.description" type="textarea"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button size="small" type="danger" @click="model.fearHeros.splice(i,1)">删除</el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-tab-pane>
+        <el-tab-pane label="克制谁">
+          <el-button @click="model.attackHeros.push({})">
+            <i class="el-icon-plus"></i>添加英雄
+          </el-button>
+          <el-row type="flex" style="flex-wrap:wrap">
+            <el-col :md="12" v-for="(item,i) in model.attackHeros" :key="i">
+              <el-form-item label="英雄">
+                <el-select filterable v-model="item.hero">
+                  <el-option
+                    v-for="hero in heroes"
+                    :key="hero._id"
+                    :value="hero._id"
+                    :label="hero.name"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="描述">
+                <el-input v-model="item.description" type="textarea"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button size="small" type="danger" @click="model.attackHeros.splice(i,1)">删除</el-button>
               </el-form-item>
             </el-col>
           </el-row>
@@ -180,13 +247,15 @@ export default {
           difficult: 0
         },
         skills: [],
-        partners:[]
+        partners: [],
+        attackHeros:[],
+        fearHeros:[]
       },
       categories: [],
       items: [],
-      heroes:[],
-      runes:[],
-      skills:[]
+      heroes: [],
+      runes: [],
+      skills: []
     };
   },
   methods: {
