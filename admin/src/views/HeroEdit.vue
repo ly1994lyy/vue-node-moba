@@ -56,6 +56,26 @@
           <el-form-item label="生存">
             <el-rate :max="9" style="margin-top:0.6rem" show-score v-model="model.scores.survive"></el-rate>
           </el-form-item>
+          <el-form-item label="铭文推荐">
+            <el-select v-model="model.runeTips" multiple>
+              <el-option v-for="item of runes" :key="item._id" :label="item.name" :value="item._id"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="召唤师技能">
+            <el-select v-model="model.skillTips" multiple>
+              <el-option v-for="item of skills" :key="item._id" :label="item.name" :value="item._id"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="主升技能">
+            <el-select v-model="model.mainSkill">
+              <el-option v-for="item of model.skills" :key="item._id" :label="item.name" :value="item._id"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="副升技能">
+            <el-select v-model="model.secSkill">
+              <el-option v-for="item of model.skills" :key="item._id" :label="item.name" :value="item._id"></el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item label="顺风出装">
             <el-select v-model="model.item1" multiple>
               <el-option v-for="item of items" :key="item._id" :label="item.name" :value="item._id"></el-option>
@@ -164,7 +184,9 @@ export default {
       },
       categories: [],
       items: [],
-      heroes:[]
+      heroes:[],
+      runes:[],
+      skills:[]
     };
   },
   methods: {
@@ -196,6 +218,14 @@ export default {
       const res = await this.$http.get(`/rest/items`);
       this.items = res.data;
     },
+    async fetchRunes() {
+      const res = await this.$http.get(`/rest/runes`);
+      this.runes = res.data;
+    },
+    async fetchSkills() {
+      const res = await this.$http.get(`/rest/skills`);
+      this.skills = res.data;
+    },
     async fetchHeroes() {
       const res = await this.$http.get(`/rest/heroes`);
       this.heroes = res.data;
@@ -205,6 +235,8 @@ export default {
     this.fetchCategories();
     this.fetchItems();
     this.fetchHeroes();
+    this.fetchRunes();
+    this.fetchSkills();
     this.id && this.fetch();
   }
 };

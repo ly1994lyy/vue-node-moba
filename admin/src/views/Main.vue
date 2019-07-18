@@ -20,6 +20,11 @@
           <el-menu-item index="/runes/list">铭文列表</el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group>
+          <template slot="title">召唤师技能管理</template>
+          <el-menu-item index="/skills/create">新建召唤师技能</el-menu-item>
+          <el-menu-item index="/skills/list">召唤师技能列表</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group>
           <template slot="title">文章管理</template>
           <el-menu-item index="/articles/create">新建文章</el-menu-item>
           <el-menu-item index="/articles/list">文章列表</el-menu-item>

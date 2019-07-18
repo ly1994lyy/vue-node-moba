@@ -6,6 +6,10 @@ const scheme = new mongoose.Schema({
     banner:{ type:String },
     title:{ type:String },
     categories:[{ type:mongoose.SchemaTypes.ObjectId, ref:'Category' }],
+    runeTips:[{type:mongoose.SchemaTypes.ObjectId,ref:'Rune'}],
+    skillTips:[{type:mongoose.SchemaTypes.ObjectId,ref:'Skill'}],
+    mainSkill:{type:String},
+    secSkill:{type:String},
     scores:{
         difficult:{type:Number},
         skills:{type:Number},
